@@ -53,4 +53,8 @@ object AppModule {
     @Provides
     fun provideYourDao(db: AppDataBase) = db.getMovieDao()
 
+    @Singleton
+    @Provides
+    fun provideUpComingMoviesDao(db: AppDataBase) = db.getUpcomingMovieDao()
+
 }

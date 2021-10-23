@@ -1,4 +1,4 @@
-package dev.jahidhasanco.movieapp.data.local
+package dev.jahidhasanco.movieapp.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

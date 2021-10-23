@@ -108,8 +108,6 @@ class MovieFragment : Fragment() {
 
         }
 
-
-
     }
 
     private fun showLayout() {

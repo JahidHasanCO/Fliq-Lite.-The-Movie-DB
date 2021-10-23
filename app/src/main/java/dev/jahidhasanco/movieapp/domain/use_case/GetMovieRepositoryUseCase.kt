@@ -2,8 +2,6 @@ package dev.jahidhasanco.movieapp.domain.use_case
 
 import android.content.Context
 import dev.jahidhasanco.movieapp.data.local.AppDataBase
-import dev.jahidhasanco.movieapp.data.local.MovieDao
-import dev.jahidhasanco.movieapp.data.model.movie.MoviesDTO
 import dev.jahidhasanco.movieapp.data.model.movie.toDomainMovie
 import dev.jahidhasanco.movieapp.domain.model.movie.Movie
 import dev.jahidhasanco.movieapp.domain.repository.MovieRepository
@@ -23,32 +21,6 @@ constructor(
     private val applicationContext: Context
 ) {
 
-
-    fun getUpcomingMovies(lang: String, page: Int): Flow<Resource<List<Movie>>> = flow {
-
-        try {
-
-            emit(Resource.Loading())
-
-            val response = repository.getUpcomingMovies(lang, page)
-
-            val list =
-                if (response.results.isNullOrEmpty()) emptyList<Movie>() else response.results.map {
-                    it.toDomainMovie()
-                }
-
-            emit((Resource.Success(data = list)))
-
-
-        } catch (e: HttpException) {
-            emit(Resource.Error(message = e.localizedMessage ?: "Unknown Error"))
-        } catch (e: IOException) {
-            emit(Resource.Error(message = e.localizedMessage ?: "Check Your Internet Connection"))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = e.localizedMessage ?: ""))
-        }
-
-    }
 
     fun getPopularMovies(lang: String, page: Int): Flow<Resource<List<Movie>>> = flow {
 

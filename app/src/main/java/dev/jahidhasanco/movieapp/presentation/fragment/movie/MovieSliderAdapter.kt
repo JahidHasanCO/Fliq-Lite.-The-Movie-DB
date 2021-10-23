@@ -3,18 +3,19 @@ package dev.jahidhasanco.movieapp.presentation.fragment.movie
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.smarteist.autoimageslider.SliderViewAdapter
+import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
 import dev.jahidhasanco.movieapp.databinding.SingleMovieSliderBinding
 import dev.jahidhasanco.movieapp.domain.model.movie.Movie
 
 class MovieSliderAdapter : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() {
 
 
-    private var listener: ((Movie) -> Unit)? = null
+    private var listener: ((UpcomingMovieEntity) -> Unit)? = null
 
-    var list = mutableListOf<Movie>()
+    var list : ArrayList<UpcomingMovieEntity> = arrayListOf()
 
-    fun setContentList(list: MutableList<Movie>) {
-        this.list = list
+    fun setContentList(list: List<UpcomingMovieEntity>) {
+        this.list.addAll(list)
         notifyDataSetChanged()
     }
 
@@ -28,7 +29,7 @@ class MovieSliderAdapter : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() 
         SliderViewAdapter.ViewHolder(viewHolder.root)
 
 
-    fun itemClickListener(l: (Movie) -> Unit) {
+    fun itemClickListener(l: (UpcomingMovieEntity) -> Unit) {
         listener = l
     }
 

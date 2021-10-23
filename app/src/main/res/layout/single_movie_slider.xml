@@ -5,7 +5,8 @@
     <data>
         <variable
             name="movie"
-            type="dev.jahidhasanco.movieapp.domain.model.movie.Movie" />
+            type="dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity"
+            />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

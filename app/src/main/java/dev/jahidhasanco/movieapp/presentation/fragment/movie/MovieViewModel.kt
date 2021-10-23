@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.jahidhasanco.movieapp.domain.use_case.GetMovieRepositoryUseCase
+import dev.jahidhasanco.movieapp.domain.use_case.GetUpComingMovies_UseCase
 import dev.jahidhasanco.movieapp.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,33 +15,39 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel
 @Inject
-constructor(private val getMovieRepositoryUseCase: GetMovieRepositoryUseCase) : ViewModel() {
+constructor
+    (
+    private val getMovieRepositoryUseCase: GetMovieRepositoryUseCase,
+    private val getupcomingmoviesUsecase: GetUpComingMovies_UseCase
+) :
+    ViewModel() {
 
 
-    private val _upcomingMovieList = MutableStateFlow<MovieNetworkState>(MovieNetworkState())
+    private val _upcomingMovieList =
+        MutableStateFlow<UpcomingMovieNetworkState>(UpcomingMovieNetworkState())
 
-    val upcomingMovieList: StateFlow<MovieNetworkState> = _upcomingMovieList
+    val upcomingMovieList: StateFlow<UpcomingMovieNetworkState> = _upcomingMovieList
 
     private val _popularMovieList = MutableStateFlow<MovieNetworkState>(MovieNetworkState())
 
     val popularMovieList: StateFlow<MovieNetworkState> = _popularMovieList
 
 
-    fun upComingMovies(lang: String, page: Int){
-        getMovieRepositoryUseCase.getUpcomingMovies(lang,page).onEach {
-            when(it){
-                is Resource.Loading ->{
+    fun upComingMovies(lang: String, page: Int) {
+        getupcomingmoviesUsecase.invoke(lang, page).onEach {
+            when (it) {
+                is Resource.Loading -> {
 
-                    _upcomingMovieList.value = MovieNetworkState(isLoading = true)
-
-                }
-                is Resource.Error ->{
-                    _upcomingMovieList.value = MovieNetworkState(error = it.message?:"")
+                    _upcomingMovieList.value = UpcomingMovieNetworkState(isLoading = true)
 
                 }
-                is Resource.Success ->{
+                is Resource.Error -> {
+                    _upcomingMovieList.value = UpcomingMovieNetworkState(error = it.message ?: "")
 
-                    _upcomingMovieList.value = MovieNetworkState(data = it.data)
+                }
+                is Resource.Success -> {
+
+                    _upcomingMovieList.value = UpcomingMovieNetworkState(data = it.data)
                 }
 
             }
@@ -48,19 +55,19 @@ constructor(private val getMovieRepositoryUseCase: GetMovieRepositoryUseCase) : 
     }
 
 
-    fun popularMovies(lang: String, page: Int){
-        getMovieRepositoryUseCase.getPopularMovies(lang,page).onEach {
-            when(it){
-                is Resource.Loading ->{
+    fun popularMovies(lang: String, page: Int) {
+        getMovieRepositoryUseCase.getPopularMovies(lang, page).onEach {
+            when (it) {
+                is Resource.Loading -> {
 
                     _popularMovieList.value = MovieNetworkState(isLoading = true)
 
                 }
-                is Resource.Error ->{
-                    _popularMovieList.value = MovieNetworkState(error = it.message?:"")
+                is Resource.Error -> {
+                    _popularMovieList.value = MovieNetworkState(error = it.message ?: "")
 
                 }
-                is Resource.Success ->{
+                is Resource.Success -> {
 
                     _popularMovieList.value = MovieNetworkState(data = it.data)
                 }
