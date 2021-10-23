@@ -41,6 +41,7 @@ fun ResultDTO.toDomainMovie(): Movie{
         genreIds = this.genreIds?: emptyList<Int>(),
         originalTitle = this.originalTitle?:"",
         posterPath = this.posterPath?:"",
-        releaseDate = this.releaseDate?:""
+        releaseDate = this.releaseDate?:"",
+        backdropPath = this.backdropPath?:""
     )
 }

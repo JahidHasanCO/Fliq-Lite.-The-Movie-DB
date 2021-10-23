@@ -8,21 +8,18 @@
             type="dev.jahidhasanco.movieapp.domain.model.movie.Movie" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="240dp">
 
         <ImageView
-            android:id="@+id/imageView_single_movie_slider"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            urlToImage="@{movie.posterPath}"
+            urlBackdrop="@{movie.backdropPath}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

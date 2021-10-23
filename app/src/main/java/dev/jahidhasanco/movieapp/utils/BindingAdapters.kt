@@ -13,3 +13,11 @@ fun urlToImage(view: ImageView, str:String){
 
     Glide.with(view).setDefaultRequestOptions(options).load("https://image.tmdb.org/t/p/w780$str").into(view)
 }
+
+@BindingAdapter("urlBackdrop")
+fun urlBackdrop(view: ImageView, str:String){
+
+    val options = RequestOptions.placeholderOf(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background)
+
+    Glide.with(view).setDefaultRequestOptions(options).load("https://image.tmdb.org/t/p/w780$str").into(view)
+}

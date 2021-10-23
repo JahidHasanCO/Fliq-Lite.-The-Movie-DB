@@ -2,14 +2,14 @@ package dev.jahidhasanco.movieapp.presentation.fragment.movie
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import com.smarteist.autoimageslider.SliderViewAdapter
 import dev.jahidhasanco.movieapp.databinding.SingleMovieSliderBinding
 import dev.jahidhasanco.movieapp.domain.model.movie.Movie
 
-class MovieAdapter :RecyclerView.Adapter<MovieAdapter.MyViewHolder>() {
+class MovieSliderAdapter : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() {
 
 
-    private var listener :((Movie)->Unit)?=null
+    private var listener: ((Movie) -> Unit)? = null
 
     var list = mutableListOf<Movie>()
 
@@ -18,21 +18,18 @@ class MovieAdapter :RecyclerView.Adapter<MovieAdapter.MyViewHolder>() {
         notifyDataSetChanged()
     }
 
-
-    class MyViewHolder(val viewHolder: SingleMovieSliderBinding) :
-        RecyclerView.ViewHolder(viewHolder.root)
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): MovieAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?): MyViewHolder {
         val binding =
-            SingleMovieSliderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SingleMovieSliderBinding.inflate(LayoutInflater.from(parent?.context), parent, false)
         return MyViewHolder(binding)
     }
 
-    fun itemClickListener(l:(Movie)->Unit){
-        listener= l
+    class MyViewHolder(val viewHolder: SingleMovieSliderBinding) :
+        SliderViewAdapter.ViewHolder(viewHolder.root)
+
+
+    fun itemClickListener(l: (Movie) -> Unit) {
+        listener = l
     }
 
 
@@ -46,7 +43,10 @@ class MovieAdapter :RecyclerView.Adapter<MovieAdapter.MyViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int {
+
+    override fun getCount(): Int {
         return this.list.size
     }
+
+
 }
