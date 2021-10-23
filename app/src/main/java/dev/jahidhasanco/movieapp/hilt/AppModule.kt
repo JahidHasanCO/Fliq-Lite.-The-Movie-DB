@@ -1,9 +1,13 @@
 package dev.jahidhasanco.movieapp.hilt
 
+import android.content.Context
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dev.jahidhasanco.movieapp.data.local.AppDataBase
 import dev.jahidhasanco.movieapp.data.remote.ApiService
 import dev.jahidhasanco.movieapp.data.repository.MovieRepositoryImpl
 import dev.jahidhasanco.movieapp.domain.repository.MovieRepository
@@ -29,19 +33,24 @@ object AppModule {
         return MovieRepositoryImpl(apiService)
     }
 
-//    @Singleton
-//    @Provides
-//    fun provideYourDatabase(
-//        @ApplicationContext app: Context
-//    ) = Room.databaseBuilder(
-//        app,
-//        AppDataBase::class.java,
-//        "MovieDataBase"
-//    ).build()
-//
-//
-//    @Singleton
-//    @Provides
-//    fun provideYourDao(db: AppDataBase) = db.movieDao()
+    @Provides
+    fun provideContext(@ApplicationContext appContext: Context): Context {
+        return appContext
+    }
+
+    @Singleton
+    @Provides
+    fun provideYourDatabase(
+        @ApplicationContext app: Context
+    ) = Room.databaseBuilder(
+        app,
+        AppDataBase::class.java,
+        "MovieDataBase"
+    ).build()
+
+
+    @Singleton
+    @Provides
+    fun provideYourDao(db: AppDataBase) = db.getMovieDao()
 
 }

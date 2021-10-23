@@ -5,12 +5,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "movies")
 data class Movie(
-
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null,
     @SerializedName("adult")
     val adult: Boolean,
-    @SerializedName("genre_ids")
-    val genreIds: List<Int>,
     @SerializedName("original_title")
     val originalTitle: String,
     @SerializedName("poster_path")

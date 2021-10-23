@@ -38,7 +38,6 @@ data class ResultDTO(
 fun ResultDTO.toDomainMovie(): Movie{
     return Movie(
         adult = this.adult?:false,
-        genreIds = this.genreIds?: emptyList<Int>(),
         originalTitle = this.originalTitle?:"",
         posterPath = this.posterPath?:"",
         releaseDate = this.releaseDate?:"",
