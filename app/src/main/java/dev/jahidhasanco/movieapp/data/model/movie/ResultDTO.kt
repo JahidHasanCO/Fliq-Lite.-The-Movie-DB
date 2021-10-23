@@ -36,20 +36,20 @@ data class ResultDTO(
     val voteCount: Int
 )
 
-fun ResultDTO.toDomainMovie(): Movie{
+fun ResultDTO.toDomainMovie(): Movie {
     return Movie(
-        adult = this.adult?:false,
-        originalTitle = this.originalTitle?:"",
-        posterPath = this.posterPath?:"",
-        releaseDate = this.releaseDate?:"",
-        backdropPath = this.backdropPath?:""
+        adult = this.adult ?: false,
+        originalTitle = this.originalTitle ?: "",
+        posterPath = this.posterPath ?: "",
+        releaseDate = this.releaseDate ?: "",
+        backdropPath = this.backdropPath ?: ""
     )
 }
 
-fun ResultDTO.toUpComingMovieEntity(): UpcomingMovieEntity{
+fun ResultDTO.toUpComingMovieEntity(): UpcomingMovieEntity {
     return UpcomingMovieEntity(
-        originalTitle = this.originalTitle?:"",
-        releaseDate = this.releaseDate?:"",
-        backdropPath = this.backdropPath?:""
+        originalTitle = this.originalTitle ?: "",
+        releaseDate = this.releaseDate ?: "",
+        backdropPath = this.backdropPath ?: ""
     )
 }

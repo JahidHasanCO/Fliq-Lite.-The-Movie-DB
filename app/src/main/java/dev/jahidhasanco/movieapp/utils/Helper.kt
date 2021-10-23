@@ -1,5 +1,7 @@
 package dev.jahidhasanco.movieapp.utils
 
+
+
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,5 +18,8 @@ class Helper {
             }
             return 2
         }
+
+
+
     }
 }

@@ -1,5 +1,6 @@
 package dev.jahidhasanco.movieapp.data.local.entity
 
+import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -15,4 +16,5 @@ data class UpcomingMovieEntity(
     val releaseDate: String,
     @SerializedName("backdrop_path")
     val backdropPath: String
+
 )
