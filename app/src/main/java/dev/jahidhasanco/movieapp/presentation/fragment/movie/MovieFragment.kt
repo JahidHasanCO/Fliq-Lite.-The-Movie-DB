@@ -65,11 +65,15 @@ class MovieFragment : Fragment() {
             adapter = movieAdapter
         }
 
-        hideLayout()
+
 
         lifecycle.coroutineScope.launchWhenCreated {
 
             movieViewModel.upcomingMovieList.collect {
+
+                if (it.isLoading){
+                    hideLayout()
+                }
 
                 it.data?.let { it ->
 
@@ -89,20 +93,26 @@ class MovieFragment : Fragment() {
 
             movieViewModel.popularMovieList.collect {
 
+                if (it.isLoading){
+                    hideLayout()
+                }
+
+
                 it.data?.let { it ->
 
                     if (it.isEmpty()) {
                         binding.nothingFound.visibility = View.VISIBLE
                     }
-                    movieAdapter.setContentList(it.toMutableList())
 
+                    movieAdapter.setContentList(it.toMutableList())
+                    showLayout()
                 }
             }
 
 
         }
 
-        showLayout()
+
 
     }
 

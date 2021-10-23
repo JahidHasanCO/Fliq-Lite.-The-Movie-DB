@@ -9,7 +9,7 @@ import dev.jahidhasanco.movieapp.R
 @BindingAdapter("urlToImage")
 fun urlToImage(view: ImageView, str:String){
 
-    val options = RequestOptions.placeholderOf(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background)
+    val options = RequestOptions.placeholderOf(R.drawable.bg).error(R.drawable.bg)
 
     Glide.with(view).setDefaultRequestOptions(options).load("https://image.tmdb.org/t/p/w780$str").into(view)
 }
@@ -17,7 +17,7 @@ fun urlToImage(view: ImageView, str:String){
 @BindingAdapter("urlBackdrop")
 fun urlBackdrop(view: ImageView, str:String){
 
-    val options = RequestOptions.placeholderOf(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background)
+    val options = RequestOptions.placeholderOf(R.drawable.bg).error(R.drawable.bg)
 
     Glide.with(view).setDefaultRequestOptions(options).load("https://image.tmdb.org/t/p/w780$str").into(view)
 }

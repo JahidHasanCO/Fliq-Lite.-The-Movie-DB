@@ -1,6 +1,5 @@
 package dev.jahidhasanco.movieapp.domain.use_case
 
-import dev.jahidhasanco.movieapp.data.local.MovieDao
 import dev.jahidhasanco.movieapp.data.model.movie.toDomainMovie
 import dev.jahidhasanco.movieapp.domain.model.movie.Movie
 import dev.jahidhasanco.movieapp.domain.repository.MovieRepository
