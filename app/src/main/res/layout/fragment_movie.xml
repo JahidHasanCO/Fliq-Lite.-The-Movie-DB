@@ -66,6 +66,7 @@
 
 
         <androidx.core.widget.NestedScrollView
+            android:visibility="invisible"
             android:id="@+id/fullContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,7 +94,7 @@
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
+                    android:layout_height="200dp"
                     android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -303,12 +304,15 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <ProgressBar
-            android:id="@+id/progress"
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
+            android:layout_below="@+id/appbarLayout"
+            >
+
+            <include layout="@layout/movie_frag_shimmer"></include>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <TextView
             android:id="@+id/nothing_found"

@@ -117,13 +117,14 @@ class MovieFragment : Fragment() {
     }
 
     private fun showLayout() {
-        binding.progress.visibility = View.GONE
+        binding.shimmerViewContainer.stopShimmer()
+        binding.shimmerViewContainer.hideShimmer()
         binding.fullContainer.visibility = View.VISIBLE
     }
 
     private fun hideLayout() {
         binding.fullContainer.visibility = View.GONE
-        binding.progress.visibility = View.VISIBLE
+        binding.shimmerViewContainer.startShimmer()
     }
 
 
