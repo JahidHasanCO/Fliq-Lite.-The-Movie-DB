@@ -93,10 +93,6 @@ class MovieFragment : Fragment() {
 
             movieViewModel.popularMovieList.collect {
 
-                if (it.isLoading){
-                    hideLayout()
-                }
-
 
                 it.data?.let { it ->
 
@@ -119,12 +115,13 @@ class MovieFragment : Fragment() {
     private fun showLayout() {
         binding.shimmerViewContainer.stopShimmer()
         binding.shimmerViewContainer.hideShimmer()
+        binding.shimmerViewContainer.visibility = View.GONE
         binding.fullContainer.visibility = View.VISIBLE
     }
 
     private fun hideLayout() {
         binding.fullContainer.visibility = View.GONE
-        binding.shimmerViewContainer.startShimmer()
+        binding.nothingFound.visibility = View.GONE
     }
 
 

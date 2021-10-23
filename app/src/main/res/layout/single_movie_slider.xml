@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/backGround"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="230dp">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/roundedImageView"
@@ -35,8 +35,8 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@{movie.originalTitle}"
-            android:textColor="@color/mainText"
-            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/roundedImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
