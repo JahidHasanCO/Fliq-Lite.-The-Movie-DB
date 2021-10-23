@@ -12,9 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="240dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:riv_corner_radius="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:scaleType="centerCrop"
             urlBackdrop="@{movie.backdropPath}"
             app:layout_constraintEnd_toEndOf="parent"

@@ -9,4 +9,8 @@ class MovieRepositoryImpl(private val apiService: ApiService): MovieRepository {
     override suspend fun getUpcomingMovies(lang: String, page: Int): MoviesDTO {
         return apiService.getUpcomingMovies(lang,page)
     }
+
+    override suspend fun getPopularMovies(lang: String, page: Int): MoviesDTO {
+        return apiService.getPopularMovies(lang,page)
+    }
 }

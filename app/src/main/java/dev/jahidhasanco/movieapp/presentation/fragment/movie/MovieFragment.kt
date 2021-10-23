@@ -29,9 +29,9 @@ class MovieFragment : Fragment() {
     val binding: FragmentMovieBinding
         get() = _binding!!
 
+    private val movieAdapter = MovieAdapter()
     private val movieSliderAdapter = MovieSliderAdapter()
     private val movieViewModel: MovieViewModel by viewModels()
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,15 +44,15 @@ class MovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentMovieBinding.inflate(inflater,container,false)
+        _binding = FragmentMovieBinding.inflate(inflater, container, false)
 
         return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        movieViewModel.upComingMovies("",1)
-
+        movieViewModel.upComingMovies("", 1)
+        movieViewModel.popularMovies("", 1)
 
         binding.slider.apply {
             setSliderAdapter(movieSliderAdapter)
@@ -61,37 +61,60 @@ class MovieFragment : Fragment() {
             startAutoCycle()
         }
 
+        binding.popularMovieRecycler.apply {
+            adapter = movieAdapter
+        }
+
+        hideLayout()
 
         lifecycle.coroutineScope.launchWhenCreated {
-            movieViewModel.upcomingMovieList.collect {
 
-                if (it.isLoading) {
-                    binding.nothingFound.visibility = View.GONE
-                    binding.progress.visibility = View.VISIBLE
-                }
-                if (it.error.isNotBlank()) {
-                    binding.nothingFound.visibility = View.GONE
-                    binding.progress.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
-                }
+            movieViewModel.upcomingMovieList.collect {
 
                 it.data?.let { it ->
 
                     if (it.isEmpty()) {
                         binding.nothingFound.visibility = View.VISIBLE
                     }
-                    binding.progress.visibility = View.GONE
                     movieSliderAdapter.setContentList(it.toMutableList())
 
                 }
 
 
             }
+
         }
 
+        lifecycle.coroutineScope.launchWhenCreated {
+
+            movieViewModel.popularMovieList.collect {
+
+                it.data?.let { it ->
+
+                    if (it.isEmpty()) {
+                        binding.nothingFound.visibility = View.VISIBLE
+                    }
+                    movieAdapter.setContentList(it.toMutableList())
+
+                }
+            }
+
+
+        }
+
+        showLayout()
 
     }
 
+    private fun showLayout() {
+        binding.progress.visibility = View.GONE
+        binding.fullContainer.visibility = View.VISIBLE
+    }
+
+    private fun hideLayout() {
+        binding.fullContainer.visibility = View.GONE
+        binding.progress.visibility = View.VISIBLE
+    }
 
 
 }

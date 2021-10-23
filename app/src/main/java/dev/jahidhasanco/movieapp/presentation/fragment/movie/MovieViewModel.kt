@@ -21,9 +21,13 @@ constructor(private val getMovieRepositoryUseCase: GetMovieRepositoryUseCase) : 
 
     val upcomingMovieList: StateFlow<MovieNetworkState> = _upcomingMovieList
 
+    private val _popularMovieList = MutableStateFlow<MovieNetworkState>(MovieNetworkState())
+
+    val popularMovieList: StateFlow<MovieNetworkState> = _popularMovieList
+
 
     fun upComingMovies(lang: String, page: Int){
-        getMovieRepositoryUseCase(lang,page).onEach {
+        getMovieRepositoryUseCase.getUpcomingMovies(lang,page).onEach {
             when(it){
                 is Resource.Loading ->{
 
@@ -37,6 +41,28 @@ constructor(private val getMovieRepositoryUseCase: GetMovieRepositoryUseCase) : 
                 is Resource.Success ->{
 
                     _upcomingMovieList.value = MovieNetworkState(data = it.data)
+                }
+
+            }
+        }.launchIn(viewModelScope)
+    }
+
+
+    fun popularMovies(lang: String, page: Int){
+        getMovieRepositoryUseCase.getPopularMovies(lang,page).onEach {
+            when(it){
+                is Resource.Loading ->{
+
+                    _popularMovieList.value = MovieNetworkState(isLoading = true)
+
+                }
+                is Resource.Error ->{
+                    _popularMovieList.value = MovieNetworkState(error = it.message?:"")
+
+                }
+                is Resource.Success ->{
+
+                    _popularMovieList.value = MovieNetworkState(data = it.data)
                 }
 
             }

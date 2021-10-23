@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="movie"
+            type="dev.jahidhasanco.movieapp.domain.model.movie.Movie" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/backGround"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:layout_width="130dp"
+        android:layout_height="200dp">
+
+
+        <ImageView
+            android:id="@+id/imageView_single_movie"
+            android:layout_width="match_parent"
+            android:src="@drawable/poster"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            urlToImage="@{movie.posterPath}"
+            />
+
+
+    </androidx.cardview.widget.CardView>
+</layout>

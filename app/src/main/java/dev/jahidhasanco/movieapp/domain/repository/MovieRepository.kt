@@ -5,4 +5,6 @@ import dev.jahidhasanco.movieapp.data.model.movie.MoviesDTO
 interface MovieRepository {
 
     suspend fun getUpcomingMovies(lang: String, page: Int): MoviesDTO
+
+    suspend fun getPopularMovies(lang: String, page: Int): MoviesDTO
 }

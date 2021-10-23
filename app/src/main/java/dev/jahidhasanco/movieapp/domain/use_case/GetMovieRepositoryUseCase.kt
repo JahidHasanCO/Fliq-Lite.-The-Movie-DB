@@ -14,7 +14,7 @@ class GetMovieRepositoryUseCase
 @Inject
 constructor(private val repository: MovieRepository)
 {
-    operator fun invoke(lang: String, page: Int): Flow<Resource<List<Movie>>> = flow {
+    fun getUpcomingMovies(lang: String, page: Int): Flow<Resource<List<Movie>>> = flow {
 
         try {
 
@@ -42,4 +42,33 @@ constructor(private val repository: MovieRepository)
         }
 
     }
+
+    fun getPopularMovies(lang: String, page: Int): Flow<Resource<List<Movie>>> = flow{
+
+        try {
+
+            emit(Resource.Loading())
+
+            val responsePopularMovies = repository.getPopularMovies(lang, page)
+
+            val list = if(responsePopularMovies.results.isNullOrEmpty()) emptyList<Movie>() else responsePopularMovies.results.map {
+                it.toDomainMovie()
+            }
+
+            emit((Resource.Success(data = list)))
+
+
+        }
+
+        catch (e: HttpException){
+            emit(Resource.Error(message = e.localizedMessage?:"Unknown Error"))
+        }
+        catch (e: IOException){
+            emit(Resource.Error(message = e.localizedMessage?:"Check Your Internet Connection"))
+        }
+        catch (e: Exception){
+            emit(Resource.Error(message = e.localizedMessage?:""))
+        }
+    }
+
 }
