@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.movieapp.R
 import dev.jahidhasanco.movieapp.databinding.ActivityMainBinding
 import dev.jahidhasanco.movieapp.presentation.fragment.movie.MovieFragment
+import dev.jahidhasanco.movieapp.utils.NetworkUtils
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        if (!NetworkUtils.isInternetAvailable(this)) {
+            binding.noInterNetLayout.visibility = View.VISIBLE
+        } else {
+            binding.noInterNetLayout.visibility = View.GONE
+        }
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, MovieFragment())

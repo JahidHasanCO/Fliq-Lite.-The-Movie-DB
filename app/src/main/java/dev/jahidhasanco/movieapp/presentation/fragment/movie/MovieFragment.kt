@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -23,6 +23,7 @@ class MovieFragment : Fragment() {
     val binding: FragmentMovieBinding
         get() = _binding!!
 
+    private lateinit var categoryAdapter: CategoryAdapter
     private val movieAdapter = PopularMovieAdapter()
     private val movieSliderAdapter = MovieSliderAdapter()
     private val topRatedMovieAdapter = TopRatedMovieAdapter()
@@ -45,16 +46,30 @@ class MovieFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        hideLayout()
 
-        if (!NetworkUtils.isInternetAvailable(context!!)) {
-            binding.noInterNetLayout.visibility = View.VISIBLE
-        } else {
-            binding.noInterNetLayout.visibility = View.GONE
+        val categories: ArrayList<String> = arrayListOf()
+        categories.add("Fantasy")
+        categories.add("Adventure")
+        categories.add("Action")
+        categories.add("Sci-Fi")
+
+        categoryAdapter = CategoryAdapter(categories)
+
+        binding.swipe.setOnRefreshListener {
+
+            if (NetworkUtils.isInternetAvailable(context!!)) {
+                fetchViewModel()
+                fetchDataAfterRefresh()
+                binding.swipe.isRefreshing = false
+            } else {
+                Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
-        movieViewModel.getUpcomingMovies("", 1)
-        movieViewModel.getPopularMovies("", 1)
-        movieViewModel.getTopRatedMovies("", 1)
+        fetchViewModel()
+
 
         binding.slider.apply {
             setSliderAdapter(movieSliderAdapter)
@@ -66,55 +81,71 @@ class MovieFragment : Fragment() {
         binding.popularMovieRecycler.apply {
             adapter = movieAdapter
         }
-
+        binding.categoryRec.apply {
+            setHasFixedSize(true)
+            adapter = categoryAdapter
+        }
         binding.topRatedMovieRecycler.apply {
             adapter = topRatedMovieAdapter
         }
+
 
         fetchData()
 
 
     }
 
+    private fun fetchViewModel() {
+        movieViewModel.getUpcomingMovies("", 1)
+        movieViewModel.getPopularMovies("", 1)
+        movieViewModel.getTopRatedMovies("", 1)
+    }
+
     private fun fetchData() {
 
         movieViewModel._upcomingMovies.observe(this) { result ->
             movieSliderAdapter.setContentList(result.data!!)
-            if (result is Resource.Loading || result.data.isNullOrEmpty()) {
+            if (result is Resource.Loading) {
                 hideLayout()
             }
         }
 
         movieViewModel._popularMovies.observe(this) { result ->
-
             movieAdapter.submitList(result.data!!)
-
-
         }
 
         movieViewModel._topRatedMovies.observe(this) { result ->
 
             topRatedMovieAdapter.submitList(result.data!!)
-
-            if (result is Resource.Success || !result.data.isNullOrEmpty()) {
-                showLayout()
+            if (result is Resource.Success || result.data.isNullOrEmpty()) {
+                binding.shimmerViewContainer.stopShimmer()
+                binding.shimmerViewContainer.hideShimmer()
+                binding.shimmerViewContainer.visibility = View.GONE
+                binding.fullContainer.visibility = View.VISIBLE
             }
-
         }
 
     }
 
-    private fun showLayout() {
-        binding.shimmerViewContainer.stopShimmer()
-        binding.shimmerViewContainer.hideShimmer()
-        binding.shimmerViewContainer.visibility = View.GONE
-        binding.fullContainer.visibility = View.VISIBLE
+
+    private fun fetchDataAfterRefresh() {
+
+        movieViewModel._upcomingMovies.observe(this) { result ->
+            movieSliderAdapter.setContentList(result.data!!)
+        }
+        movieViewModel._popularMovies.observe(this) { result ->
+            movieAdapter.submitList(result.data!!)
+        }
+        movieViewModel._topRatedMovies.observe(this) { result ->
+            topRatedMovieAdapter.submitList(result.data!!)
+        }
+
     }
 
-    private fun hideLayout() {
-        binding.fullContainer.visibility = View.GONE
-        binding.nothingFound.visibility = View.GONE
+    private fun hideLayout(){
+        binding.shimmerViewContainer.startShimmer()
+        binding.shimmerViewContainer.visibility = View.VISIBLE
+        binding.fullContainer.visibility = View.INVISIBLE
     }
-
 
 }

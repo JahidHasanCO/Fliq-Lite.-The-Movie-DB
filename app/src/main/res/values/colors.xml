@@ -2,10 +2,10 @@
 <resources>
     <color name="primary">#F2B833</color>
     <color name="backGround">#1F2123</color>
-    <color name="backGroundAd">#0E1011</color>
+    <color name="backGroundAd">#191B1C</color>
     <color name="mainText">#FFFFFFFF</color>
     <color name="textAd">#BABABA</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="shimmer">#e7e7e7</color>
+    <color name="shimmer">#191B1C</color>
 </resources>
