@@ -1,24 +1,30 @@
 package dev.jahidhasanco.movieapp.presentation.fragment.movie
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.smarteist.autoimageslider.SliderViewAdapter
-import dev.jahidhasanco.movieapp.data.local.entity.PopularMovieEntity
 import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
 import dev.jahidhasanco.movieapp.databinding.SingleMovieSliderBinding
 
-class MovieSliderAdapter : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() {
-
+class MovieSliderAdapter() : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() {
 
     private var listener: ((UpcomingMovieEntity) -> Unit)? = null
 
-    var list : ArrayList<UpcomingMovieEntity> = arrayListOf()
+
+    var list: ArrayList<UpcomingMovieEntity> = arrayListOf()
 
     fun setContentList(list: List<UpcomingMovieEntity>) {
-        this.list.addAll(list)
-        notifyDataSetChanged()
+
+        if(this.list != list){
+            this.list.clear()
+            this.list.addAll(list)
+            notifyDataSetChanged()
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup?): MyViewHolder {
         val binding =
@@ -34,7 +40,6 @@ class MovieSliderAdapter : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() 
         listener = l
     }
 
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.viewHolder.movie = this.list[position]
 
@@ -45,16 +50,9 @@ class MovieSliderAdapter : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() 
         }
     }
 
-
     override fun getCount(): Int {
-        return this.list.size
+        return list.size
     }
 
-    class MovieComparator : DiffUtil.ItemCallback<UpcomingMovieEntity>() {
-        override fun areItemsTheSame(oldItem: UpcomingMovieEntity, newItem: UpcomingMovieEntity) =
-            oldItem.id == newItem.id
-
-        override fun areContentsTheSame(oldItem: UpcomingMovieEntity, newItem: UpcomingMovieEntity) =
-            oldItem == newItem
-    }
 }
+

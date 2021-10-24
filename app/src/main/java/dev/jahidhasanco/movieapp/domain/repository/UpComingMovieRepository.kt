@@ -1,9 +1,11 @@
 package dev.jahidhasanco.movieapp.domain.repository
 
+import android.content.Context
 import androidx.room.withTransaction
 import dev.jahidhasanco.movieapp.data.local.AppDataBase
 import dev.jahidhasanco.movieapp.data.model.movie.toUpComingMovieEntity
 import dev.jahidhasanco.movieapp.data.remote.ApiService
+import dev.jahidhasanco.movieapp.utils.NetworkUtils
 import dev.jahidhasanco.movieapp.utils.networkBoundResource
 import kotlinx.coroutines.delay
 import javax.inject.Inject
@@ -23,7 +25,6 @@ constructor(
             _UpcomingDao.getAllUpComingMovies()
         },
         fetch = {
-            delay(2000)
             apiService.getUpcomingMovies(lang, page)
         },
         saveFetchResult = {

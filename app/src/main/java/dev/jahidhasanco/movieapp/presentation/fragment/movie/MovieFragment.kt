@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.load.engine.Resource
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.movieapp.databinding.FragmentMovieBinding
+import dev.jahidhasanco.movieapp.utils.Resource
 
 
 @AndroidEntryPoint
@@ -48,8 +49,8 @@ class MovieFragment : Fragment() {
 
         binding.slider.apply {
             setSliderAdapter(movieSliderAdapter)
-            setIndicatorAnimation(IndicatorAnimationType.SWAP)
-            setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
+            setIndicatorAnimation(IndicatorAnimationType.WORM)
+            setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
             startAutoCycle()
         }
 
@@ -57,21 +58,28 @@ class MovieFragment : Fragment() {
             adapter = movieAdapter
         }
 
+        fetchData()
 
+
+    }
+
+    private fun fetchData() {
 
         movieViewModel._upcomingMovies.observe(this) { result ->
-
             movieSliderAdapter.setContentList(result.data!!)
-            hideLayout()
+            if(result is Resource.Loading || result.data.isNullOrEmpty()){
+                hideLayout()
+            }
         }
 
         movieViewModel._popularMovies.observe(this) { result ->
 
             movieAdapter.submitList(result.data!!)
-            showLayout()
-//            binding.shimmerViewContainer.isVisible = result is Resource.Loading && result.data.isNullOrEmpty()
-//            binding.nothingFound.isVisible = result is Resource.Error && result.data.isNullOrEmpty()
-//            textViewError.text = result.error?.localizedMessage
+
+            if(result is Resource.Success || !result.data.isNullOrEmpty()){
+                showLayout()
+            }
+
         }
 
 

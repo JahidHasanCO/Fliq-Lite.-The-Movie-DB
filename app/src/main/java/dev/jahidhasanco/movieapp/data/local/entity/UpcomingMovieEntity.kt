@@ -1,6 +1,7 @@
 package dev.jahidhasanco.movieapp.data.local.entity
 
 import android.graphics.Bitmap
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
