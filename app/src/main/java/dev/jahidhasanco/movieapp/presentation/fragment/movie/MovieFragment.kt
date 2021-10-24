@@ -1,24 +1,16 @@
 package dev.jahidhasanco.movieapp.presentation.fragment.movie
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
-import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.load.engine.Resource
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.movieapp.databinding.FragmentMovieBinding
-import kotlinx.coroutines.flow.collect
-import kotlin.math.abs
 
 
 @AndroidEntryPoint
@@ -29,7 +21,7 @@ class MovieFragment : Fragment() {
     val binding: FragmentMovieBinding
         get() = _binding!!
 
-    private val movieAdapter = MovieAdapter()
+    private val movieAdapter = PopularMovieAdapter()
     private val movieSliderAdapter = MovieSliderAdapter()
     private val movieViewModel: MovieViewModel by viewModels()
 
@@ -51,8 +43,8 @@ class MovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        movieViewModel.upComingMovies("", 1)
-        movieViewModel.popularMovies("", 1)
+        movieViewModel.getUpcomingMovies("", 1)
+        movieViewModel.getPopularMovies("", 1)
 
         binding.slider.apply {
             setSliderAdapter(movieSliderAdapter)
@@ -67,46 +59,21 @@ class MovieFragment : Fragment() {
 
 
 
-        lifecycle.coroutineScope.launchWhenCreated {
+        movieViewModel._upcomingMovies.observe(this) { result ->
 
-            movieViewModel.upcomingMovieList.collect {
-
-                if (it.isLoading){
-                    hideLayout()
-                }
-
-                it.data?.let { it ->
-
-                    if (it.isEmpty()) {
-                        binding.nothingFound.visibility = View.VISIBLE
-                    }
-                    movieSliderAdapter.setContentList(it.toMutableList())
-
-                }
-
-
-            }
-
+            movieSliderAdapter.setContentList(result.data!!)
+            hideLayout()
         }
 
-        lifecycle.coroutineScope.launchWhenCreated {
+        movieViewModel._popularMovies.observe(this) { result ->
 
-            movieViewModel.popularMovieList.collect {
-
-
-                it.data?.let { it ->
-
-                    if (it.isEmpty()) {
-                        binding.nothingFound.visibility = View.VISIBLE
-                    }
-
-                    movieAdapter.setContentList(it.toMutableList())
-                    showLayout()
-                }
-            }
-
-
+            movieAdapter.submitList(result.data!!)
+            showLayout()
+//            binding.shimmerViewContainer.isVisible = result is Resource.Loading && result.data.isNullOrEmpty()
+//            binding.nothingFound.isVisible = result is Resource.Error && result.data.isNullOrEmpty()
+//            textViewError.text = result.error?.localizedMessage
         }
+
 
     }
 

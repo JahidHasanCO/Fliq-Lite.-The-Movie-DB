@@ -1,6 +1,5 @@
 package dev.jahidhasanco.movieapp.data.remote
 
-import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
 import dev.jahidhasanco.movieapp.data.model.movie.MoviesDTO
 import dev.jahidhasanco.movieapp.utils.Constants.API_KEY
 import retrofit2.http.GET

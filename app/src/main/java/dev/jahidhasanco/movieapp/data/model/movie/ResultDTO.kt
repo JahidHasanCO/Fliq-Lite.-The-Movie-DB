@@ -2,8 +2,8 @@ package dev.jahidhasanco.movieapp.data.model.movie
 
 
 import com.google.gson.annotations.SerializedName
+import dev.jahidhasanco.movieapp.data.local.entity.PopularMovieEntity
 import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
-import dev.jahidhasanco.movieapp.domain.model.movie.Movie
 
 data class ResultDTO(
     @SerializedName("adult")
@@ -36,20 +36,20 @@ data class ResultDTO(
     val voteCount: Int
 )
 
-fun ResultDTO.toDomainMovie(): Movie {
-    return Movie(
-        adult = this.adult ?: false,
-        originalTitle = this.originalTitle ?: "",
-        posterPath = this.posterPath ?: "",
-        releaseDate = this.releaseDate ?: "",
-        backdropPath = this.backdropPath ?: ""
-    )
-}
 
 fun ResultDTO.toUpComingMovieEntity(): UpcomingMovieEntity {
     return UpcomingMovieEntity(
         originalTitle = this.originalTitle ?: "",
         releaseDate = this.releaseDate ?: "",
         backdropPath = this.backdropPath ?: ""
+    )
+}
+
+
+fun ResultDTO.toPopularMovieEntity(): PopularMovieEntity {
+    return PopularMovieEntity(
+        originalTitle = this.originalTitle ?: "",
+        releaseDate = this.releaseDate ?: "",
+        posterPath = this.posterPath ?: ""
     )
 }

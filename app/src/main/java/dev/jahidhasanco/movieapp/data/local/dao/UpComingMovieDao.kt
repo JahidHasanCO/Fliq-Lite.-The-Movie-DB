@@ -4,13 +4,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
 interface UpComingMovieDao
 {
     @Query("SELECT * FROM upComingMovies")
-    suspend fun getAllUpComingMovies() : List<UpcomingMovieEntity>
+    fun getAllUpComingMovies() : Flow<List<UpcomingMovieEntity>>
 
     @Query("DELETE FROM upComingMovies")
     suspend fun clearAllUpcomingMovies()

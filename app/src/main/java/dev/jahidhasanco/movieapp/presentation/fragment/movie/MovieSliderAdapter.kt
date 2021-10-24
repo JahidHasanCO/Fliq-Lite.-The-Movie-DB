@@ -2,10 +2,11 @@ package dev.jahidhasanco.movieapp.presentation.fragment.movie
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import com.smarteist.autoimageslider.SliderViewAdapter
+import dev.jahidhasanco.movieapp.data.local.entity.PopularMovieEntity
 import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
 import dev.jahidhasanco.movieapp.databinding.SingleMovieSliderBinding
-import dev.jahidhasanco.movieapp.domain.model.movie.Movie
 
 class MovieSliderAdapter : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() {
 
@@ -49,5 +50,11 @@ class MovieSliderAdapter : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() 
         return this.list.size
     }
 
+    class MovieComparator : DiffUtil.ItemCallback<UpcomingMovieEntity>() {
+        override fun areItemsTheSame(oldItem: UpcomingMovieEntity, newItem: UpcomingMovieEntity) =
+            oldItem.id == newItem.id
 
+        override fun areContentsTheSame(oldItem: UpcomingMovieEntity, newItem: UpcomingMovieEntity) =
+            oldItem == newItem
+    }
 }
