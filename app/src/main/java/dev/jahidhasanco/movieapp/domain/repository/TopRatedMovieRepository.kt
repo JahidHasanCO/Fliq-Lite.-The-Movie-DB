@@ -24,7 +24,7 @@ constructor(
             _topRatedMovieDao.getAllTopRatedMovies()
         },
         fetch = {
-            apiService.getPopularMovies(lang, page)
+            apiService.getTopRatedMovies(lang, page)
         },
         saveFetchResult = {
             appDataBase.withTransaction {

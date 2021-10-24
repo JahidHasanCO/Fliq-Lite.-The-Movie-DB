@@ -46,7 +46,7 @@ class MovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        if (NetworkUtils.isInternetAvailable(context!!)) {
+        if (!NetworkUtils.isInternetAvailable(context!!)) {
             binding.noInterNetLayout.visibility = View.VISIBLE
         } else {
             binding.noInterNetLayout.visibility = View.GONE
@@ -54,6 +54,7 @@ class MovieFragment : Fragment() {
 
         movieViewModel.getUpcomingMovies("", 1)
         movieViewModel.getPopularMovies("", 1)
+        movieViewModel.getTopRatedMovies("", 1)
 
         binding.slider.apply {
             setSliderAdapter(movieSliderAdapter)
@@ -64,6 +65,10 @@ class MovieFragment : Fragment() {
 
         binding.popularMovieRecycler.apply {
             adapter = movieAdapter
+        }
+
+        binding.topRatedMovieRecycler.apply {
+            adapter = topRatedMovieAdapter
         }
 
         fetchData()

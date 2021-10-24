@@ -43,7 +43,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lets exploer your favourite movies"
+                        android:text="Lets explorer your favourite movies"
                         android:textColor="@color/textAd"
                         android:textSize="14sp" />
 
@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="No InterNet"
+                    android:text="No Internet"
                     android:textColor="@color/mainText"
                     android:textSize="15sp" />
 
