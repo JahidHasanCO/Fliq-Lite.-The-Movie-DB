@@ -9,6 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.jahidhasanco.movieapp.data.local.AppDataBase
 import dev.jahidhasanco.movieapp.data.remote.ApiService
+import dev.jahidhasanco.movieapp.domain.repository.MovieTrailerRepository
 import dev.jahidhasanco.movieapp.domain.repository.PopularMovieRepository
 import dev.jahidhasanco.movieapp.domain.repository.TopRatedMovieRepository
 import dev.jahidhasanco.movieapp.domain.repository.UpComingMovieRepository
@@ -69,6 +70,12 @@ object AppModule {
         return TopRatedMovieRepository(appDataBase, apiService)
     }
 
+    @Provides
+    fun provideYoutubePlayerRepository(
+        apiService: ApiService
+    ): MovieTrailerRepository {
+        return MovieTrailerRepository(apiService)
+    }
 
     @Singleton
     @Provides

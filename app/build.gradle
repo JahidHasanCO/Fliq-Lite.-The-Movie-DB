@@ -99,4 +99,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.0-alpha10"
     implementation "androidx.navigation:navigation-ui-ktx:2.4.0-alpha10"
 
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
 }

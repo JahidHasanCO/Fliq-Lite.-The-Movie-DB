@@ -28,29 +28,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:text="Upcoming Movies"
-                    android:textColor="@color/mainText"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
 
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
-                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:sliderAnimationDuration="600"
                     app:sliderAutoCycleDirection="back_and_forth"
                     app:sliderAutoCycleEnabled="true"
@@ -97,7 +82,7 @@
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
                             android:text="See All"
-                            android:textColor="@color/mainText"
+                            android:textColor="@color/primary"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -146,7 +131,7 @@
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
                             android:text="See All"
-                            android:textColor="@color/mainText"
+                            android:textColor="@color/primary"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -196,7 +181,7 @@
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
                             android:text="See All"
-                            android:textColor="@color/mainText"
+                            android:textColor="@color/primary"
                             android:textSize="14sp" />
 
                     </LinearLayout>

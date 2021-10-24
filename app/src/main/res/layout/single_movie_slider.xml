@@ -14,6 +14,7 @@
         android:layout_height="230dp"
         android:background="@color/backGround">
 
+
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/roundedImageView"
             urlBackdrop="@{movie.backdropPath}"
@@ -23,12 +24,13 @@
             android:layout_marginRight="10dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:riv_corner_radius="12dp" />
 
-
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
@@ -41,6 +43,18 @@
             app:layout_constraintBottom_toBottomOf="@+id/roundedImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/playBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="@+id/roundedImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/roundedImageView"
+            app:tint="@color/primary" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

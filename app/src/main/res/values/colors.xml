@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#F2B833</color>
-    <color name="backGround">#1F2123</color>
-    <color name="backGroundAd">#191B1C</color>
+    <color name="backGround">#191B1C</color>
+    <color name="backGroundAd">#1F2123</color>
     <color name="mainText">#FFFFFFFF</color>
     <color name="textAd">#BABABA</color>
     <color name="black">#FF000000</color>

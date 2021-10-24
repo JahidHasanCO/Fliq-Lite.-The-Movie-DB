@@ -32,36 +32,48 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
+                        android:layout_marginStart="-10dp"
+                        android:layout_gravity="start"
                         android:id="@+id/profileName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hello, Jahid"
-                        android:textColor="@color/mainText"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/logo"
+                         />
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lets explorer your favourite movies"
-                        android:textColor="@color/textAd"
-                        android:textSize="14sp" />
+                        android:layout_height="match_parent"
+                        android:text="Fliq."
+                        android:textColor="@color/primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
 
                 </LinearLayout>
 
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/profileImage"
+                <ImageView
+                    android:id="@+id/settingBtn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="end"
-                    android:layout_marginEnd="10dp"
-                    android:padding="7dp"
-                    android:src="@drawable/pic"
-                    app:riv_corner_radius="100dp" />
+                    android:padding="12dp"
+                    android:src="@drawable/ic_setting"
+                    app:riv_corner_radius="100dp"
+                    app:tint="@color/mainText" />
+
+
+                <ImageView
+                    android:id="@+id/searchBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="end"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_search"
+                    app:riv_corner_radius="100dp"
+                    app:tint="@color/mainText" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -85,16 +97,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <LinearLayout
-            android:background="@color/backGroundAd"
-            android:id="@+id/linearLayout4"
-            android:layout_width="match_parent"
-            android:layout_marginTop="2dp"
-            android:layout_height="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
-            android:orientation="horizontal" />
+
 
         <FrameLayout
             android:id="@+id/container"
@@ -104,7 +107,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
             app:layout_constraintVertical_bias="1.0">
 
         </FrameLayout>

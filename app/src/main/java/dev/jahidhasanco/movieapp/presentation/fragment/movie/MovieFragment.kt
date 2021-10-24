@@ -25,7 +25,7 @@ class MovieFragment : Fragment() {
 
     private lateinit var categoryAdapter: CategoryAdapter
     private val movieAdapter = PopularMovieAdapter()
-    private val movieSliderAdapter = MovieSliderAdapter()
+    private lateinit var movieSliderAdapter : MovieSliderAdapter
     private val topRatedMovieAdapter = TopRatedMovieAdapter()
     private val movieViewModel: MovieViewModel by viewModels()
 
@@ -55,6 +55,7 @@ class MovieFragment : Fragment() {
         categories.add("Sci-Fi")
 
         categoryAdapter = CategoryAdapter(categories)
+        movieSliderAdapter = MovieSliderAdapter(context!!)
 
         binding.swipe.setOnRefreshListener {
 
@@ -63,6 +64,7 @@ class MovieFragment : Fragment() {
                 fetchDataAfterRefresh()
                 binding.swipe.isRefreshing = false
             } else {
+                binding.swipe.isRefreshing = false
                 Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show()
             }
 

@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp">
         <activity
+            android:name=".presentation.activity.youtubePlayer.YoutubeVideoPlayerActivity"
+            android:screenOrientation="landscape"
+            android:exported="false" />
+        <activity
             android:name=".presentation.activity.MovieDetailsActivity"
             android:exported="false" />
         <activity

@@ -1,17 +1,16 @@
 package dev.jahidhasanco.movieapp.presentation.fragment.movie
 
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import com.smarteist.autoimageslider.SliderViewAdapter
 import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
 import dev.jahidhasanco.movieapp.databinding.SingleMovieSliderBinding
+import dev.jahidhasanco.movieapp.presentation.activity.youtubePlayer.YoutubeVideoPlayerActivity
 
-class MovieSliderAdapter() : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() {
-
-    private var listener: ((UpcomingMovieEntity) -> Unit)? = null
+class MovieSliderAdapter(private val context: Context) : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>() {
 
 
     var list: ArrayList<UpcomingMovieEntity> = arrayListOf()
@@ -36,17 +35,15 @@ class MovieSliderAdapter() : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>(
         SliderViewAdapter.ViewHolder(viewHolder.root)
 
 
-    fun itemClickListener(l: (UpcomingMovieEntity) -> Unit) {
-        listener = l
-    }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.viewHolder.movie = this.list[position]
 
-        holder.viewHolder.root.setOnClickListener {
-            listener?.let {
-                it(this.list[position])
-            }
+        holder.viewHolder.playBtn.setOnClickListener {
+            val intent = Intent(context, YoutubeVideoPlayerActivity::class.java)
+            val movieId:String = this.list[position].id.toString()
+            intent.putExtra("MovieIdPass",movieId)
+            context.startActivity(intent)
         }
     }
 
