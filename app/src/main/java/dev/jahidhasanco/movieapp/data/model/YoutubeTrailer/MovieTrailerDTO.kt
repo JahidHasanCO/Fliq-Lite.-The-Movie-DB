@@ -2,9 +2,9 @@ package dev.jahidhasanco.movieapp.data.model.YoutubeTrailer
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieTrailer(
+data class MovieTrailerDTO(
     @SerializedName("id")
     val id: Int,
     @SerializedName("results")
-    val results: List<ResultTrailer>
+    val results: List<ResultTrailerDTO>
 )

@@ -1,6 +1,6 @@
 package dev.jahidhasanco.movieapp.data.remote
 
-import dev.jahidhasanco.movieapp.data.model.YoutubeTrailer.MovieTrailer
+import dev.jahidhasanco.movieapp.data.model.YoutubeTrailer.MovieTrailerDTO
 import dev.jahidhasanco.movieapp.data.model.movie.MoviesDTO
 import dev.jahidhasanco.movieapp.utils.Constants.API_KEY
 import retrofit2.http.GET
@@ -31,6 +31,6 @@ interface ApiService {
     suspend fun getMovieTrailer(
         @Path("movieId") movieId: String,
         @Query("language") language: String
-    ): MovieTrailer
+    ): MovieTrailerDTO
 
 }

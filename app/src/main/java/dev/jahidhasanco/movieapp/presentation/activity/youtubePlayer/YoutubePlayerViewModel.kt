@@ -1,13 +1,14 @@
 package dev.jahidhasanco.movieapp.presentation.activity.youtubePlayer
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
-import dev.jahidhasanco.movieapp.data.model.YoutubeTrailer.MovieTrailer
 import dev.jahidhasanco.movieapp.domain.repository.MovieTrailerRepository
 import dev.jahidhasanco.movieapp.utils.Resource
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,10 +17,27 @@ class YoutubePlayerViewModel
 constructor(private val movieTrailerRepository: MovieTrailerRepository)
     :ViewModel()
 {
-    lateinit var _trailer: LiveData<Resource<MovieTrailer>>
+    private val _getTrailer = MutableStateFlow(YoutubePlayerState())
+    var _trailer : StateFlow<YoutubePlayerState> = _getTrailer
 
 
     fun getMovieTrailer(id: String) {
-        _trailer = movieTrailerRepository(id).asLiveData()
+        movieTrailerRepository.getTrailer(id).onEach {
+            when(it){
+                is Resource.Loading ->{
+
+                    _getTrailer.value = YoutubePlayerState(isLoading = true)
+
+                }
+                is Resource.Error ->{
+                    _getTrailer.value = YoutubePlayerState(error = it.error.toString()?:"")
+
+                }
+                is Resource.Success ->{
+
+                    _getTrailer.value = YoutubePlayerState(data = it.data)
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 }

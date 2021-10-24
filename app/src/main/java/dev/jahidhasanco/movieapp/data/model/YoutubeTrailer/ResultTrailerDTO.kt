@@ -1,8 +1,9 @@
 package dev.jahidhasanco.movieapp.data.model.YoutubeTrailer
 
 import com.google.gson.annotations.SerializedName
+import dev.jahidhasanco.movieapp.domain.model.trailer.TrailerData
 
-data class ResultTrailer(
+data class ResultTrailerDTO(
     @SerializedName("id")
     val id: String,
     @SerializedName("iso_3166_1")
@@ -24,3 +25,9 @@ data class ResultTrailer(
     @SerializedName("type")
     val type: String
 )
+
+fun ResultTrailerDTO.toDomainTrailer(): TrailerData {
+    return TrailerData(
+        key = this.key, name = this.name, official = this.official, type = this.type
+    )
+}
