@@ -5,7 +5,7 @@ object Constants {
     const val API_KEY = "86ab73a94cd4cfeaedc37fc0e2c0ed1a"
 
     fun getGenre(id: Int): String {
-        val genreMap = HashMap<Int,String>()
+        val genreMap = HashMap<Int, String>()
         genreMap[28] = "Action"
         genreMap[12] = "Adventure"
         genreMap[16] = "Animation"

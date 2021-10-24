@@ -1,15 +1,14 @@
 package dev.jahidhasanco.movieapp.utils
 
 
-
 import java.text.SimpleDateFormat
 import java.util.*
 
 class Helper {
 
-    companion object{
+    companion object {
 
-        public fun CompareDate(valid_until:String): Int{
+        public fun CompareDate(valid_until: String): Int {
 
             val sdf = SimpleDateFormat("yyyy-MM-dd")
             val strDate: Date = sdf.parse(valid_until)
@@ -18,7 +17,6 @@ class Helper {
             }
             return 2
         }
-
 
 
     }

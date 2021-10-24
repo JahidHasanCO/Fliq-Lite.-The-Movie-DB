@@ -7,17 +7,19 @@ import com.bumptech.glide.request.RequestOptions
 import dev.jahidhasanco.movieapp.R
 
 @BindingAdapter("urlToImage")
-fun urlToImage(view: ImageView, str:String){
+fun urlToImage(view: ImageView, str: String) {
 
     val options = RequestOptions.placeholderOf(R.drawable.bg).error(R.drawable.bg)
 
-    Glide.with(view).setDefaultRequestOptions(options).load("https://image.tmdb.org/t/p/w780$str").into(view)
+    Glide.with(view).setDefaultRequestOptions(options).load("https://image.tmdb.org/t/p/w780$str")
+        .into(view)
 }
 
 @BindingAdapter("urlBackdrop")
-fun urlBackdrop(view: ImageView, str:String){
+fun urlBackdrop(view: ImageView, str: String) {
 
     val options = RequestOptions.placeholderOf(R.drawable.bg).error(R.drawable.bg)
 
-    Glide.with(view).setDefaultRequestOptions(options).load("https://image.tmdb.org/t/p/w780$str").into(view)
+    Glide.with(view).setDefaultRequestOptions(options).load("https://image.tmdb.org/t/p/w780$str")
+        .into(view)
 }

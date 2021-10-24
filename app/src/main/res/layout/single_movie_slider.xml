@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="movie"
-            type="dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity"
-            />
+            type="dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/backGround"
         android:layout_width="match_parent"
-        android:layout_height="230dp">
+        android:layout_height="230dp"
+        android:background="@color/backGround">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/roundedImageView"

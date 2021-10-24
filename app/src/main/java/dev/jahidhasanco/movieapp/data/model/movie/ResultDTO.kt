@@ -3,6 +3,7 @@ package dev.jahidhasanco.movieapp.data.model.movie
 
 import com.google.gson.annotations.SerializedName
 import dev.jahidhasanco.movieapp.data.local.entity.PopularMovieEntity
+import dev.jahidhasanco.movieapp.data.local.entity.TopRatedMovieEntity
 import dev.jahidhasanco.movieapp.data.local.entity.UpcomingMovieEntity
 
 data class ResultDTO(
@@ -48,6 +49,14 @@ fun ResultDTO.toUpComingMovieEntity(): UpcomingMovieEntity {
 
 fun ResultDTO.toPopularMovieEntity(): PopularMovieEntity {
     return PopularMovieEntity(
+        originalTitle = this.originalTitle ?: "",
+        releaseDate = this.releaseDate ?: "",
+        posterPath = this.posterPath ?: ""
+    )
+}
+
+fun ResultDTO.toTopRatedMovieEntity(): TopRatedMovieEntity {
+    return TopRatedMovieEntity(
         originalTitle = this.originalTitle ?: "",
         releaseDate = this.releaseDate ?: "",
         posterPath = this.posterPath ?: ""

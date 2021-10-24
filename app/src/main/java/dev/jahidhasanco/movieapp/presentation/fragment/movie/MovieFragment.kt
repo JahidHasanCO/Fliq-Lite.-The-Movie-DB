@@ -11,6 +11,7 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.movieapp.databinding.FragmentMovieBinding
+import dev.jahidhasanco.movieapp.utils.NetworkUtils
 import dev.jahidhasanco.movieapp.utils.Resource
 
 
@@ -24,6 +25,7 @@ class MovieFragment : Fragment() {
 
     private val movieAdapter = PopularMovieAdapter()
     private val movieSliderAdapter = MovieSliderAdapter()
+    private val topRatedMovieAdapter = TopRatedMovieAdapter()
     private val movieViewModel: MovieViewModel by viewModels()
 
 
@@ -43,6 +45,12 @@ class MovieFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        if (NetworkUtils.isInternetAvailable(context!!)) {
+            binding.noInterNetLayout.visibility = View.VISIBLE
+        } else {
+            binding.noInterNetLayout.visibility = View.GONE
+        }
 
         movieViewModel.getUpcomingMovies("", 1)
         movieViewModel.getPopularMovies("", 1)
@@ -67,7 +75,7 @@ class MovieFragment : Fragment() {
 
         movieViewModel._upcomingMovies.observe(this) { result ->
             movieSliderAdapter.setContentList(result.data!!)
-            if(result is Resource.Loading || result.data.isNullOrEmpty()){
+            if (result is Resource.Loading || result.data.isNullOrEmpty()) {
                 hideLayout()
             }
         }
@@ -76,12 +84,18 @@ class MovieFragment : Fragment() {
 
             movieAdapter.submitList(result.data!!)
 
-            if(result is Resource.Success || !result.data.isNullOrEmpty()){
+
+        }
+
+        movieViewModel._topRatedMovies.observe(this) { result ->
+
+            topRatedMovieAdapter.submitList(result.data!!)
+
+            if (result is Resource.Success || !result.data.isNullOrEmpty()) {
                 showLayout()
             }
 
         }
-
 
     }
 

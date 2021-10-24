@@ -18,7 +18,7 @@ class MovieSliderAdapter() : SliderViewAdapter<MovieSliderAdapter.MyViewHolder>(
 
     fun setContentList(list: List<UpcomingMovieEntity>) {
 
-        if(this.list != list){
+        if (this.list != list) {
             this.list.clear()
             this.list.addAll(list)
             notifyDataSetChanged()

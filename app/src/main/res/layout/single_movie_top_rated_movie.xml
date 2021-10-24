@@ -6,8 +6,9 @@
 
         <variable
             name="movie"
-            type="dev.jahidhasanco.movieapp.data.local.entity.PopularMovieEntity" />
+            type="dev.jahidhasanco.movieapp.data.local.entity.TopRatedMovieEntity" />
     </data>
+
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageView_single_movie"
@@ -20,5 +21,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/poster"
         app:riv_corner_radius="8dp" />
+
 
 </layout>

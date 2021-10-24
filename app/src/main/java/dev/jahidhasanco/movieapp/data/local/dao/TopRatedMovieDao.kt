@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.Flow
 
 
 @Dao
-interface PopularMovieDao {
+interface TopRatedMovieDao {
 
-    @Query("SELECT * FROM popularMovies")
-    fun getAllPopularMovies(): Flow<List<PopularMovieEntity>>
+    @Query("SELECT * FROM topRatedMovies")
+    fun getAllTopRatedMovies(): Flow<List<TopRatedMovieEntity>>
 
-    @Query("DELETE FROM popularMovies")
-    suspend fun clearAllPopularMovies()
+    @Query("DELETE FROM topRatedMovies")
+    suspend fun clearTopRatedMovies()
 
     @Insert
-    suspend fun addPopularMovie(movie: List<PopularMovieEntity>)
+    suspend fun addTopRatedMovie(movie: List<TopRatedMovieEntity>)
 }

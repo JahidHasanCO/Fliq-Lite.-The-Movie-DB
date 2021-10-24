@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import dev.jahidhasanco.movieapp.data.local.AppDataBase
 import dev.jahidhasanco.movieapp.data.remote.ApiService
 import dev.jahidhasanco.movieapp.domain.repository.PopularMovieRepository
+import dev.jahidhasanco.movieapp.domain.repository.TopRatedMovieRepository
 import dev.jahidhasanco.movieapp.domain.repository.UpComingMovieRepository
 import dev.jahidhasanco.movieapp.utils.Constants
 import retrofit2.Retrofit
@@ -60,6 +61,14 @@ object AppModule {
         return UpComingMovieRepository(appDataBase, apiService)
     }
 
+    @Provides
+    fun provideTopRatedMovieRepository(
+        appDataBase: AppDataBase,
+        apiService: ApiService
+    ): TopRatedMovieRepository {
+        return TopRatedMovieRepository(appDataBase, apiService)
+    }
+
 
     @Singleton
     @Provides
@@ -68,5 +77,10 @@ object AppModule {
     @Singleton
     @Provides
     fun provideUpComingMoviesDao(db: AppDataBase) = db.getUpcomingMovieDao()
+
+
+    @Singleton
+    @Provides
+    fun provideTopRatedMovieMoviesDao(db: AppDataBase) = db.getTopRatedMovieDao()
 
 }

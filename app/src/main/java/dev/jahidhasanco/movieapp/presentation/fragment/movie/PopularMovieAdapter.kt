@@ -23,7 +23,7 @@ class PopularMovieAdapter :
     }
 
 
-    class MovieComparator : DiffUtil.ItemCallback<PopularMovieEntity>() {
+    private class MovieComparator : DiffUtil.ItemCallback<PopularMovieEntity>() {
         override fun areItemsTheSame(oldItem: PopularMovieEntity, newItem: PopularMovieEntity) =
             oldItem.id == newItem.id
 

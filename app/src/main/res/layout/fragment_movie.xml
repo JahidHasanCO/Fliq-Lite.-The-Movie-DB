@@ -62,11 +62,27 @@
 
             </androidx.appcompat.widget.Toolbar>
 
+            <LinearLayout
+                android:id="@+id/noInterNetLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="No InterNet"
+                    android:textColor="@color/mainText"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
         </com.google.android.material.appbar.AppBarLayout>
 
 
         <androidx.core.widget.NestedScrollView
-            android:visibility="invisible"
             android:id="@+id/fullContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -255,7 +271,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
@@ -286,17 +302,67 @@
                         android:layout_marginEnd="10dp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:ignore="SpeakableTextPresentCheck"
                         tools:listitem="@layout/single_movie" />
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="Top Rated Movies"
+                            android:textColor="@color/mainText"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="See All"
+                            android:textColor="@color/mainText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/topRatedMovieRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:ignore="SpeakableTextPresentCheck"
+                        tools:listitem="@layout/single_movie_top_rated_movie" />
+
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
+                    app:layout_constraintTop_toBottomOf="@id/linearLayout3" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -309,7 +375,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/appbarLayout"
-            >
+            android:visibility="invisible">
 
             <include layout="@layout/movie_frag_shimmer"></include>
         </com.facebook.shimmer.ShimmerFrameLayout>

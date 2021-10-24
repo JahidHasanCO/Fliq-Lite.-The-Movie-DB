@@ -8,10 +8,9 @@ import kotlinx.coroutines.flow.Flow
 
 
 @Dao
-interface UpComingMovieDao
-{
+interface UpComingMovieDao {
     @Query("SELECT * FROM upComingMovies")
-    fun getAllUpComingMovies() : Flow<List<UpcomingMovieEntity>>
+    fun getAllUpComingMovies(): Flow<List<UpcomingMovieEntity>>
 
     @Query("DELETE FROM upComingMovies")
     suspend fun clearAllUpcomingMovies()
