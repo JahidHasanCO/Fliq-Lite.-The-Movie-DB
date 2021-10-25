@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         if (!NetworkUtils.isInternetAvailable(this)) {
             binding.noInterNetLayout.visibility = View.VISIBLE

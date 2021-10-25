@@ -3,7 +3,7 @@
     <style name="Theme.MovieApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/backGround</item>
+        <item name="colorPrimaryVariant">@color/backGroundAd</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/white</item>

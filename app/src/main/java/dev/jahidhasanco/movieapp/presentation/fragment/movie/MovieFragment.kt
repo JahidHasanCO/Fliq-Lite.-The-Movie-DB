@@ -1,5 +1,6 @@
 package dev.jahidhasanco.movieapp.presentation.fragment.movie
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.movieapp.databinding.FragmentMovieBinding
+import dev.jahidhasanco.movieapp.presentation.activity.seeAllMovie.SeeAllMovieActivity
 import dev.jahidhasanco.movieapp.utils.NetworkUtils
 import dev.jahidhasanco.movieapp.utils.Resource
 
@@ -75,6 +77,11 @@ class MovieFragment : Fragment() {
 
         fetchViewModel()
 
+
+
+        binding.popularMovieSeeAll.setOnClickListener {
+            startActivity(Intent(context, SeeAllMovieActivity::class.java))
+        }
 
         binding.slider.apply {
             setSliderAdapter(movieSliderAdapter)

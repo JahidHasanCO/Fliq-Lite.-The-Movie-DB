@@ -5,30 +5,18 @@
     android:layout_height="match_parent"
     android:background="@color/backGround">
 
-    <View
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/shimmer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <View
         android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/shimmer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <LinearLayout
@@ -47,20 +35,20 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@color/shimmer"
                 android:paddingStart="20dp"
-                android:paddingEnd="20dp" />
+                android:paddingEnd="10dp" />
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
 
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="3"
                 android:background="@color/shimmer" />
 
@@ -75,8 +63,8 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/shimmer_bg">
 
@@ -85,8 +73,8 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/shimmer_bg">
 
@@ -112,7 +100,7 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@color/shimmer" />
@@ -120,9 +108,9 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="3"
                 android:background="@color/shimmer"
 
@@ -142,7 +130,6 @@
             <LinearLayout
                 android:layout_width="130dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="10dp"
                 android:background="@drawable/shimmer_bg" />
 
             <LinearLayout
@@ -173,7 +160,7 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="@color/shimmer" />
@@ -181,9 +168,9 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="3"
             android:background="@color/shimmer"
 
@@ -204,7 +191,6 @@
         <LinearLayout
             android:layout_width="130dp"
             android:layout_height="200dp"
-            android:layout_marginStart="10dp"
             android:background="@drawable/shimmer_bg" />
 
         <LinearLayout
