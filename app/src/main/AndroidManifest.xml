@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.jahidhasanco.movieapp">
+    package="dev.jahidhasanco.FliqLite">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,17 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp">
         <activity
-            android:name=".presentation.activity.seeAllMovie.SeeAllMovieActivity"
+            android:name="dev.jahidhasanco.FliqLite.presentation.activity.seeAllMovie.SeeAllMovieActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.activity.youtubePlayer.YoutubeVideoPlayerActivity"
+            android:name="dev.jahidhasanco.FliqLite.presentation.activity.youtubePlayer.YoutubeVideoPlayerActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".presentation.activity.MovieDetailsActivity"
+            android:name="dev.jahidhasanco.FliqLite.presentation.activity.movieDetails.MovieDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.activity.MainActivity"
+            android:name="dev.jahidhasanco.FliqLite.presentation.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
