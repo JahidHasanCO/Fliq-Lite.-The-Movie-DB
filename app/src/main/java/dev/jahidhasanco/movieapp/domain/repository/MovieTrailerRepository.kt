@@ -2,7 +2,6 @@ package dev.jahidhasanco.movieapp.domain.repository
 
 
 
-import dev.jahidhasanco.movieapp.data.model.YoutubeTrailer.MovieTrailerDTO
 import dev.jahidhasanco.movieapp.data.model.YoutubeTrailer.toDomainTrailer
 import dev.jahidhasanco.movieapp.data.remote.ApiService
 import dev.jahidhasanco.movieapp.domain.model.trailer.TrailerData
@@ -20,7 +19,7 @@ constructor(
     private val apiService: ApiService
 ) {
 
-     fun getTrailer(id: String): Flow<Resource<TrailerData>> = flow{
+     fun getTrailer(id: String): Flow<Resource<List<TrailerData>>> = flow{
 
         try {
             emit(Resource.Loading())
@@ -30,7 +29,7 @@ constructor(
             val list = if(response.results.isNullOrEmpty()) emptyList<TrailerData>() else response.results.map {
                 it.toDomainTrailer()
             }
-            emit((Resource.Success(data = list[0])))
+            emit((Resource.Success(data = list)))
 
         }
         catch (e: HttpException){

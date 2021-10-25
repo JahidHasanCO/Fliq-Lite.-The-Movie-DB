@@ -56,12 +56,14 @@ class YoutubeVideoPlayerActivity : AppCompatActivity() {
 //                }
 
                 it.data?.let { it ->
-                    if (it.type == "Trailer") {
-                        videoId = it.key
-                        binding.movieName.text = it.key
+                    if (it[0].type == "Trailer") {
+                        videoId = it[0].key
+                        binding.movieName.text = it[0].name
+                    }else{
+                        videoId = it[1].key
+                        binding.movieName.text = it[1].name
                     }
-                    videoId = it.key
-                    binding.movieName.text = it.key
+
                     binding.youtubePlayerView.addYouTubePlayerListener(object :
                         AbstractYouTubePlayerListener() {
                         override fun onReady(youTubePlayer: YouTubePlayer) {

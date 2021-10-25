@@ -2,16 +2,19 @@ package dev.jahidhasanco.movieapp.presentation.activity.seeAllMovie
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.movieapp.R
 import dev.jahidhasanco.movieapp.databinding.ActivityMainBinding
 import dev.jahidhasanco.movieapp.databinding.ActivitySeeAllMovieBinding
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,12 +37,10 @@ class SeeAllMovieActivity : AppCompatActivity() {
 
         initRecyclerview()
 
-        lifecycleScope.launchWhenStarted {
+
+
+        lifecycleScope.launchWhenStarted  {
             seeAllMovieViewModel.getAllPopularMovies.collectLatest { response->
-                binding.apply {
-                    progressBar.isVisible=false
-                    binding.seeALLMovieRec.isVisible=true
-                }
                 seeAllPopularMoviesAdapter.submitData(response)
             }
         }
@@ -51,7 +52,7 @@ class SeeAllMovieActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerview() {
-        binding.apply {
+
             binding.seeALLMovieRec.apply {
                 setHasFixedSize(true)
                 adapter = seeAllPopularMoviesAdapter.withLoadStateHeaderAndFooter(
@@ -60,6 +61,5 @@ class SeeAllMovieActivity : AppCompatActivity() {
                 )
                 itemAnimator = DefaultItemAnimator()
             }
-        }
     }
 }

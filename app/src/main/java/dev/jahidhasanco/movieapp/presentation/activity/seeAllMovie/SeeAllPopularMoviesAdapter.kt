@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.jahidhasanco.movieapp.data.local.entity.PopularMovieEntity
-import dev.jahidhasanco.movieapp.databinding.SingleMovieBinding
+import dev.jahidhasanco.movieapp.databinding.SingleMovieSeeAllBinding
 
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class SeeAllPopularMoviesAdapter
 @Inject constructor():
     PagingDataAdapter<PopularMovieEntity, SeeAllPopularMoviesAdapter.ViewHolder>(Diff()) {
 
-    class ViewHolder(val binding:SingleMovieBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(val binding:SingleMovieSeeAllBinding) : RecyclerView.ViewHolder(binding.root){
 
     }
 
@@ -35,7 +35,7 @@ class SeeAllPopularMoviesAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            SingleMovieBinding.inflate(LayoutInflater.from(parent.context),
+            SingleMovieSeeAllBinding.inflate(LayoutInflater.from(parent.context),
                 parent, false)
         return SeeAllPopularMoviesAdapter.ViewHolder(binding)
     }
