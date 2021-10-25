@@ -1,7 +1,5 @@
 package dev.jahidhasanco.movieapp.presentation.fragment.movie
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,11 +7,20 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.jahidhasanco.movieapp.data.local.entity.PopularMovieEntity
 import dev.jahidhasanco.movieapp.databinding.SingleMovieBinding
-import dev.jahidhasanco.movieapp.presentation.activity.movieDetails.MovieDetailsActivity
 
-class PopularMovieAdapter(private val context: Context) :
+class PopularMovieAdapter() :
     ListAdapter<PopularMovieEntity, PopularMovieAdapter.MyViewHolder>(MovieComparator()) {
 
+    private lateinit var mListener: onItemClickListener
+
+
+    interface onItemClickListener{
+        fun onItemClick(id: String)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
 
     class MyViewHolder(val viewHolder: SingleMovieBinding) :
         RecyclerView.ViewHolder(viewHolder.root)
@@ -39,12 +46,17 @@ class PopularMovieAdapter(private val context: Context) :
             holder.viewHolder.movie = currentItem
         }
 
-        holder.viewHolder.imageViewSingleMovie.setOnClickListener {
-            val intent = Intent(context, MovieDetailsActivity::class.java)
-            val movieId:String = currentItem.idMovie.toString()
-            intent.putExtra("MovieIdPass",movieId)
-            context.startActivity(intent)
+        holder.viewHolder.root.setOnClickListener {
+            mListener.let {
+                it.onItemClick(currentItem.idMovie.toString())
+            }
         }
+//        holder.viewHolder.imageViewSingleMovie.setOnClickListener {
+//            val intent = Intent(context, MovieDetailsActivity::class.java)
+//            val movieId:String = currentItem.idMovie.toString()
+//            intent.putExtra("MovieIdPass",movieId)
+//            context.startActivity(intent)
+//        }
 
     }
 

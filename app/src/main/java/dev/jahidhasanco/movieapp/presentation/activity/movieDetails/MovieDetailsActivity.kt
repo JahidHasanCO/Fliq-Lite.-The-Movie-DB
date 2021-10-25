@@ -38,7 +38,7 @@ class MovieDetailsActivity : AppCompatActivity() {
                 }
 
                 it.data?.let {movie ->
-                    binding.movieName.text = movie.originalTitle
+                    binding.movieName.text = movie.title
                 }
             }
         }

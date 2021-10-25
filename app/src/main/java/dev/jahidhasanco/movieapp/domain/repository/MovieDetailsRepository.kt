@@ -22,7 +22,7 @@ constructor(
         try {
             emit(Resource.Loading())
 
-            val response = apiService.getMovieDetails(id,"en-US")
+            val response = apiService.getMovieDetails(id,"")
 
             emit((Resource.Success(data = response)))
 

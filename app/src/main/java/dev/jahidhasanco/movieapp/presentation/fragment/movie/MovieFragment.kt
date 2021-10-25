@@ -61,7 +61,7 @@ class MovieFragment : Fragment() {
 
         categoryAdapter = CategoryAdapter(categories)
         movieSliderAdapter = MovieSliderAdapter(context!!)
-        movieAdapter = PopularMovieAdapter(context!!)
+        movieAdapter = PopularMovieAdapter()
         binding.swipe.setOnRefreshListener {
 
             if (NetworkUtils.isInternetAvailable(context!!)) {
@@ -102,7 +102,6 @@ class MovieFragment : Fragment() {
         }
 
 
-
         if (NetworkUtils.isInternetAvailable(context!!)) {
             fetchData()
         } else {
@@ -112,6 +111,14 @@ class MovieFragment : Fragment() {
             binding.shimmerViewContainer.visibility = View.GONE
             binding.fullContainer.visibility = View.VISIBLE
         }
+
+        movieAdapter.setOnItemClickListener(object : PopularMovieAdapter.onItemClickListener{
+            override fun onItemClick(id: String) {
+                Toast.makeText(context,""+id,Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
 
 
     }
