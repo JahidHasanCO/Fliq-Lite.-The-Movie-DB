@@ -12,6 +12,7 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.movieapp.databinding.FragmentMovieBinding
+import dev.jahidhasanco.movieapp.presentation.activity.movieDetails.MovieDetailsActivity
 import dev.jahidhasanco.movieapp.presentation.activity.seeAllMovie.SeeAllMovieActivity
 import dev.jahidhasanco.movieapp.utils.NetworkUtils
 import dev.jahidhasanco.movieapp.utils.Resource
@@ -26,8 +27,8 @@ class MovieFragment : Fragment() {
         get() = _binding!!
 
     private lateinit var categoryAdapter: CategoryAdapter
-    private lateinit var movieAdapter : PopularMovieAdapter
-    private lateinit var movieSliderAdapter : MovieSliderAdapter
+    private lateinit var movieAdapter: PopularMovieAdapter
+    private lateinit var movieSliderAdapter: MovieSliderAdapter
     private val topRatedMovieAdapter = TopRatedMovieAdapter()
     private val movieViewModel: MovieViewModel by viewModels()
 
@@ -112,13 +113,15 @@ class MovieFragment : Fragment() {
             binding.fullContainer.visibility = View.VISIBLE
         }
 
-        movieAdapter.setOnItemClickListener(object : PopularMovieAdapter.onItemClickListener{
+        movieAdapter.setOnItemClickListener(object : PopularMovieAdapter.onItemClickListener {
             override fun onItemClick(id: String) {
-                Toast.makeText(context,""+id,Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "" + id, Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, MovieDetailsActivity::class.java)
+                intent.putExtra("MovieIdPass", id)
+                startActivity(intent)
             }
 
         })
-
 
 
     }
@@ -170,7 +173,7 @@ class MovieFragment : Fragment() {
 
     }
 
-    private fun hideLayout(){
+    private fun hideLayout() {
         binding.shimmerViewContainer.startShimmer()
         binding.shimmerViewContainer.visibility = View.VISIBLE
         binding.fullContainer.visibility = View.INVISIBLE

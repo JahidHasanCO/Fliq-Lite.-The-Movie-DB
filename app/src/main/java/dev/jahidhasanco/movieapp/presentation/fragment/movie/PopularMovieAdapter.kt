@@ -14,11 +14,11 @@ class PopularMovieAdapter() :
     private lateinit var mListener: onItemClickListener
 
 
-    interface onItemClickListener{
+    interface onItemClickListener {
         fun onItemClick(id: String)
     }
 
-    fun setOnItemClickListener(listener: onItemClickListener){
+    fun setOnItemClickListener(listener: onItemClickListener) {
         mListener = listener
     }
 
@@ -51,12 +51,7 @@ class PopularMovieAdapter() :
                 it.onItemClick(currentItem.idMovie.toString())
             }
         }
-//        holder.viewHolder.imageViewSingleMovie.setOnClickListener {
-//            val intent = Intent(context, MovieDetailsActivity::class.java)
-//            val movieId:String = currentItem.idMovie.toString()
-//            intent.putExtra("MovieIdPass",movieId)
-//            context.startActivity(intent)
-//        }
+
 
     }
 

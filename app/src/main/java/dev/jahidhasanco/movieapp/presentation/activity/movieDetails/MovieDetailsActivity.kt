@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.coroutineScope
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.movieapp.R
 import dev.jahidhasanco.movieapp.databinding.ActivityMovieDetailsBinding
@@ -36,9 +37,9 @@ class MovieDetailsActivity : AppCompatActivity() {
                 if(it.isLoading){
 
                 }
-
                 it.data?.let {movie ->
-                    binding.movieName.text = movie.title
+                    Glide.with(this@MovieDetailsActivity).load("https://image.tmdb.org/t/p/w780${movie.posterPath}").into(binding.coverImage)
+                    Glide.with(this@MovieDetailsActivity).load("https://image.tmdb.org/t/p/w780${movie.posterPath}").into(binding.movieImage)
                 }
             }
         }
