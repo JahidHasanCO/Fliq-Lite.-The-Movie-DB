@@ -53,6 +53,9 @@ class MovieFragment : Fragment() {
         categories.add("Adventure")
         categories.add("Action")
         categories.add("Sci-Fi")
+        categories.add("Thriller")
+        categories.add("Animation")
+        categories.add("Horror")
 
         categoryAdapter = CategoryAdapter(categories)
         movieSliderAdapter = MovieSliderAdapter(context!!)
@@ -92,7 +95,12 @@ class MovieFragment : Fragment() {
         }
 
 
-        fetchData()
+
+        if (NetworkUtils.isInternetAvailable(context!!)) {
+            fetchData()
+        } else {
+            fetchDataAfterRefresh()
+        }
 
 
     }
@@ -119,7 +127,7 @@ class MovieFragment : Fragment() {
         movieViewModel._topRatedMovies.observe(this) { result ->
 
             topRatedMovieAdapter.submitList(result.data!!)
-            if (result is Resource.Success || result.data.isNullOrEmpty()) {
+            if (result is Resource.Success) {
                 binding.shimmerViewContainer.stopShimmer()
                 binding.shimmerViewContainer.hideShimmer()
                 binding.shimmerViewContainer.visibility = View.GONE
